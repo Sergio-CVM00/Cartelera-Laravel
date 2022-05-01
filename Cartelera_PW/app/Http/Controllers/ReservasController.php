@@ -16,8 +16,9 @@ class ReservasController extends Controller
         return view('reserva.elegirPelicula');
     }
 
-    public function infoPelicula()
+    public function infoPelicula($idPeli)
     {
+        
         return view('reserva.infoPelicula');
     }
 }
