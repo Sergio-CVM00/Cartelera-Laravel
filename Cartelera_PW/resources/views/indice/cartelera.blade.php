@@ -1,0 +1,1 @@
+<h1>Cartelera sin posibilidad de reservar</h1>
