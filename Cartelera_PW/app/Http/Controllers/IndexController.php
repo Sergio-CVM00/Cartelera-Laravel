@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\peliculas;
 
 class IndexController extends Controller
 {
@@ -13,11 +14,20 @@ class IndexController extends Controller
 
     public function mostrarCartelera()
     {
-        return view('indice.cartelera');
+        $peliculas=peliculas::get();
+
+        return view('indice.cartelera',compact('peliculas'));
     }
 
     public function mostrarPerfil()
     {
         return view('indice.perfil');
+    }
+
+    public function show($id)
+    {
+        return view('indice.pelicula', [
+            'peliculas' => peliculas::find($id)
+        ]);
     }
 }

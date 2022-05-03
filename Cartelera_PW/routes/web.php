@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::get('/about', [IndexController::class, 'mostrarAbout']) -> name('about');
 Route::get('/perfil', [IndexController::class, 'mostrarPerfil']) -> name('mainPerfil');
 Route::get('/cartelera', [IndexController::class, 'mostrarCartelera']) -> name('cartelera');
+Route::get('/cartelera/{id}', [IndexController::class, 'show']) -> name('mostrar_pelicula');
 //login/register
 
 //RESERVAS CONTROLLER
