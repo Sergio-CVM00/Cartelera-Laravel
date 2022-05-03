@@ -15,4 +15,9 @@ class IndexController extends Controller
     {
         return view('indice.cartelera');
     }
+
+    public function mostrarPerfil()
+    {
+        return view('indice.perfil');
+    }
 }
