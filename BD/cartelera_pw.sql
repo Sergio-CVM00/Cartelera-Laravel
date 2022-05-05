@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-04-2022 a las 18:07:25
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Tiempo de generación: 05-05-2022 a las 16:44:46
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -92,13 +92,23 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `peliculas` (
-  `id_pelicula` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `duracion` int(11) NOT NULL,
   `titulo` varchar(50) NOT NULL,
   `genero` varchar(50) NOT NULL,
   `estreno` date NOT NULL,
   `director` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `peliculas`
+--
+
+INSERT INTO `peliculas` (`id`, `duracion`, `titulo`, `genero`, `estreno`, `director`) VALUES
+(1, 120, 'Dr. Strange', 'Fantasía', '2022-05-05', 'Sam Raimi'),
+(2, 143, 'Animales Fantásticos', 'Aventura', '2012-04-06', 'Pepe Fontaneda'),
+(3, 110, 'La ciudad Perdida', 'Comedia', '2010-01-15', 'Kevin Pérez Gálvez'),
+(4, 120, 'Sonic', 'Aventura', '2022-05-06', 'Jeff Fowler');
 
 -- --------------------------------------------------------
 
@@ -158,6 +168,14 @@ CREATE TABLE `sessions` (
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('mnoYoBstLRphInJ3aoFhGQxCVEjS7zqPQpSMM6WQ', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMHE0ek9oVzR5YU5RdWhKTDdqZEZjaEpMTGpHVGREOU1tN3ByZHFOdSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9jYXJ0ZWxlcmEvMSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1651761690),
+('nu7qzn6CwuDxHfSbA4HxILsSZ53Ctz0FbCV0tPKu', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiOHlDZDdZaUJTVEhlMHhMZVFDZURJTGpnWkd2dFlGeHBBNktIVDNXViI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9jYXJ0ZWxlcmEiO319', 1651593515);
+
 -- --------------------------------------------------------
 
 --
@@ -179,6 +197,14 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
+(2, 'juanma', 'juanma@gmail.com', NULL, '$2y$10$EWqXbv14A1CLJ2eJhae0Zu5857vQiQ09NRAIrpatDmlsrHT28Cx9m', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-03 07:40:52', '2022-05-03 07:40:52'),
+(3, 'usuario1', 'usuario@gmail.com', NULL, '$2y$10$Rd8lt/xPoySeadWndJ0ZPOvWGwi4UMVtq8bDpaApE9uTqvneaOfUa', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-03 12:40:44', '2022-05-03 12:40:44');
 
 -- --------------------------------------------------------
 
@@ -228,7 +254,7 @@ ALTER TABLE `password_resets`
 -- Indices de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  ADD PRIMARY KEY (`id_pelicula`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `personal_access_tokens`
@@ -293,7 +319,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -311,7 +337,7 @@ ALTER TABLE `sesiones`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -334,7 +360,7 @@ ALTER TABLE `entrada`
 --
 ALTER TABLE `sesiones`
   ADD CONSTRAINT `sesiones_ibfk_1` FOREIGN KEY (`id_sala`) REFERENCES `salas` (`id_sala`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `sesiones_ibfk_2` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `sesiones_ibfk_2` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
