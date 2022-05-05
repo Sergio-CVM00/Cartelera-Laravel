@@ -27,15 +27,17 @@ Route::get('/cartelera/{id}', [IndexController::class, 'show']) -> name('mostrar
 //login/register
 
 //RESERVAS CONTROLLER
-Route::get('/reserva/fecha', [ReservasController::class, 'elegirFecha']) -> name('elegirFecha');
-Route::get('/reserva/fecha/cartelera', [ReservasController::class, 'elegirPelicula']) -> name('elegirPelicula');
-Route::get('/reserva/fecha/cartelera/{pelicula}', [ReservasController::class, 'infoPelicula']) -> name('infoPelicula');
+Route::post('/reserva/fecha/{peliculas}', [ReservasController::class, 'elegirFecha']) -> name('elegirFecha');
+Route::get('/reserva/fecha/{peliculas}', [ReservasController::class, 'elegirFecha']) -> name('elegirFecha');
+Route::post('/reserva/hora', [ReservasController::class, 'elegirHora']) -> name('elegirHora');
+Route::get('/reserva/hora', [ReservasController::class, 'elegirHora']) -> name('elegirHora');
 Route::get('/reserva/confirmar', [ReservasController::class, 'confirmarReserva']) -> name('confirmarReserva');
 
 //USUARIOS CONTROLLER
 //- /mostrarInfo
 //- /modInfo
 //- 
+
 
 
 

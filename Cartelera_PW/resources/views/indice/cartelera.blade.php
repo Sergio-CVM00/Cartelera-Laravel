@@ -3,8 +3,12 @@
 <h1>@lang('peliculas')</h1>
 <ul>
     @forelse($peliculas as $peliculasItems)
-        <li><a href="{{ route('mostrar_pelicula',$peliculasItems) }}">{{ $peliculasItems['titulo'] }}</a></li>
+        <li>
+            <a href="{{ route('mostrar_pelicula',$peliculasItems) }}">{{ $peliculasItems['titulo'] }}</a>
+        </li>
     @empty
-        <li>No hay proyectos para mostrar</li>
+        <li>
+            No hay proyectos para mostrar
+        </li>
     @endforelse
 </ul>

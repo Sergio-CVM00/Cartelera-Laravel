@@ -4,10 +4,10 @@
 
 <h1>Información:</h1>
 <ul>
-    <li>Título: {{ $peliculas['duracion']}}</li>
-    <li>Género: {{ $peliculas['genero']}}</li>
-    <li>Estreno: {{ $peliculas['estreno'] }}</li>
-    <li>Director: {{ $peliculas['director']}}</li>
+  <li>Duración: {{ $peliculas['duracion']}} minutos</li>
+  <li>Género: {{ $peliculas['genero']}}</li>
+  <li>Estreno: {{ $peliculas['estreno'] }}</li>
+  <li>Director: {{ $peliculas['director']}}</li>
 </ul>
 
 <div class="card" style="width: 18rem;">
@@ -18,3 +18,10 @@
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
+
+@if (Auth::check())
+  <h1><a href="{{ route('elegirFecha', $peliculas['id']) }}"><input type="button" value="Reservar"></a></h1>
+@else
+  <h3>Inicia sesión para reservar tu entrada</h3>
+  <a href="{{ route('login') }}"><input type="button" value="Iniciar sesion"></a>
+@endif
