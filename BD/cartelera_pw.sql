@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-05-2022 a las 16:44:46
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.12
+-- Tiempo de generación: 05-05-2022 a las 20:27:02
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,8 +30,15 @@ SET time_zone = "+00:00";
 CREATE TABLE `entrada` (
   `id_entrada` int(11) NOT NULL,
   `id_sesion` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `id_usuario` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `entrada`
+--
+
+INSERT INTO `entrada` (`id_entrada`, `id_sesion`, `id_usuario`) VALUES
+(1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -139,6 +146,14 @@ CREATE TABLE `salas` (
   `aforo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `salas`
+--
+
+INSERT INTO `salas` (`id_sala`, `aforo`) VALUES
+(1, 50),
+(2, 75);
+
 -- --------------------------------------------------------
 
 --
@@ -150,8 +165,17 @@ CREATE TABLE `sesiones` (
   `id_sala` int(11) NOT NULL,
   `id_pelicula` int(11) NOT NULL,
   `hora_inicio` time NOT NULL,
-  `hora_fin` int(11) NOT NULL
+  `hora_fin` time NOT NULL,
+  `dia` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `sesiones`
+--
+
+INSERT INTO `sesiones` (`id_sesion`, `id_sala`, `id_pelicula`, `hora_inicio`, `hora_fin`, `dia`) VALUES
+(1, 1, 1, '17:49:05', '20:00:04', '2022-05-05'),
+(2, 2, 4, '09:43:02', '20:51:02', '2022-05-05');
 
 -- --------------------------------------------------------
 
@@ -173,8 +197,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('mnoYoBstLRphInJ3aoFhGQxCVEjS7zqPQpSMM6WQ', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMHE0ek9oVzR5YU5RdWhKTDdqZEZjaEpMTGpHVGREOU1tN3ByZHFOdSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9jYXJ0ZWxlcmEvMSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1651761690),
-('nu7qzn6CwuDxHfSbA4HxILsSZ53Ctz0FbCV0tPKu', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiOHlDZDdZaUJTVEhlMHhMZVFDZURJTGpnWkd2dFlGeHBBNktIVDNXViI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9jYXJ0ZWxlcmEiO319', 1651593515);
+('LU7TcJMJHVqudRFN31ueME8WZtBd7RPvDoGlH0DK', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiRXVrQkl0SFE3QTFjRHU3Vm5qbmZJUW5KNnBHZktmd0gxT3ZkUnNtSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6Mjp7aTowO3M6MTA6Il9vbGRfaW5wdXQiO2k6MTtzOjY6ImVycm9ycyI7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9yZXNlcnZhL2hvcmEiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTA6Il9vbGRfaW5wdXQiO2E6MDp7fXM6NjoiZXJyb3JzIjtPOjMxOiJJbGx1bWluYXRlXFN1cHBvcnRcVmlld0Vycm9yQmFnIjoxOntzOjc6IgAqAGJhZ3MiO2E6MTp7czo3OiJkZWZhdWx0IjtPOjI5OiJJbGx1bWluYXRlXFN1cHBvcnRcTWVzc2FnZUJhZyI6Mjp7czoxMToiACoAbWVzc2FnZXMiO2E6Mjp7czo1OiJmZWNoYSI7YToxOntpOjA7czoyODoiVGhlIGZlY2hhIGZpZWxkIGlzIHJlcXVpcmVkLiI7fXM6NzoiaWRfcGVsaSI7YToxOntpOjA7czozMDoiVGhlIGlkIHBlbGkgZmllbGQgaXMgcmVxdWlyZWQuIjt9fXM6OToiACoAZm9ybWF0IjtzOjg6IjptZXNzYWdlIjt9fX19', 1651775075);
 
 -- --------------------------------------------------------
 
@@ -304,6 +327,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `entrada`
+--
+ALTER TABLE `entrada`
+  MODIFY `id_entrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -331,7 +360,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -353,7 +382,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `entrada`
 --
 ALTER TABLE `entrada`
-  ADD CONSTRAINT `entrada_ibfk_1` FOREIGN KEY (`id_sesion`) REFERENCES `sesiones` (`id_sesion`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `entrada_ibfk_1` FOREIGN KEY (`id_sesion`) REFERENCES `sesiones` (`id_sesion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `entrada_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `sesiones`
@@ -361,12 +391,6 @@ ALTER TABLE `entrada`
 ALTER TABLE `sesiones`
   ADD CONSTRAINT `sesiones_ibfk_1` FOREIGN KEY (`id_sala`) REFERENCES `salas` (`id_sala`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sesiones_ibfk_2` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `entrada` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
