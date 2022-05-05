@@ -35,11 +35,27 @@ class ReservasController extends Controller
             ->where('sesiones.dia', '=', $request->get('fecha'))
             ->where('sesiones.id_pelicula', '=', $request->get('id_peli'))
             ->get();
-        return view('reserva.elegirHora', ['sesion' => $sesion]);
+
+        $peli = peliculas::find($request->get('id_peli'));
+        return view('reserva.elegirHora', ['sesion' => $sesion, 'peli' => $peli]);
     }
 
-    public function confirmarReserva()
+    public function confirmarReserva(Request $request)
     {
-        return view('reserva.confirmarReserva');
+        $request -> validate([
+            'id_sesion'     => 'required',
+            'id_peli'       => 'required'
+        ]);        
+
+        $peli = peliculas::find($request->get('id_peli'));
+        $sesion = sesiones::find($request->get('id_sesion'));
+
+        return view('reserva.confirmarReserva', ['sesion' => $sesion, 'peli' => $peli]);
+    }
+
+    public function crearEntrada($sesion)
+    {
+        entrada::create(['id_sesion' => $sesion, 'id_usuario' => Auth::user()->id]);
+        return view('indice.perfil'); //Redireccionar a perfil->misEntradas
     }
 }

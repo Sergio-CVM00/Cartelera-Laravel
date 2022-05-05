@@ -9,4 +9,6 @@ class entrada extends Model
 {
     use HasFactory;
     protected $table='entrada';
+
+    protected $fillable=['id_entrada','id_sesion', 'id_usuario'];
 }
