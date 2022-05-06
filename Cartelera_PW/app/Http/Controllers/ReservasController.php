@@ -51,7 +51,6 @@ class ReservasController extends Controller
         ]);  
 
         $peli = peliculas::find($request->get('id_peli'));
-        //$sesion = sesiones::find($request->get('hora'));
         $sesion = DB::table('sesiones')
             ->select('sesiones.*')
             ->where('sesiones.id_sesion', '=', $request->get('hora'))
@@ -60,9 +59,10 @@ class ReservasController extends Controller
         return view('reserva.confirmarReserva', ['sesion' => $sesion, 'peli' => $peli]);
     }
 
-    public function crearEntrada($sesion)
+    public function crearEntrada($sesion, $titulo)
     {
-        entrada::create(['id_sesion' => $sesion, 'id_usuario' => Auth::user()->id]);
-        return view('indice.perfil'); //Redireccionar a perfil->misEntradas
+        entrada::create(['id_sesion' => $sesion, 'id_usuario' => Auth::user()->id, 'titulo' => $titulo]);
+
+        return redirect('/perfil');
     }
 }

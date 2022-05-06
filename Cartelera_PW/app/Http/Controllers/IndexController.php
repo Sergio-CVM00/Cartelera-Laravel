@@ -19,11 +19,6 @@ class IndexController extends Controller
         return view('indice.cartelera',compact('peliculas'));
     }
 
-    public function mostrarPerfil()
-    {
-        return view('indice.perfil');
-    }
-
     public function show($id)
     {
         return view('indice.pelicula', [

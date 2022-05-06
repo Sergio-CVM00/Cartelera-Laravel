@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ReservasController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('indice.index');
-});
+}) -> name('inicio');
 
 //INDEX CONTROLLER
 Route::get('/about', [IndexController::class, 'mostrarAbout']) -> name('about');
-Route::get('/perfil', [IndexController::class, 'mostrarPerfil']) -> name('mainPerfil');
 Route::get('/cartelera', [IndexController::class, 'mostrarCartelera']) -> name('cartelera');
 Route::get('/cartelera/{id}', [IndexController::class, 'show']) -> name('mostrar_pelicula');
-//login/register
+
+//USUARIOS CONTROLLER   
+Route::get('/perfil', [UsuariosController::class, 'mostrarPerfil']) -> name('mainPerfil');
+
 
 //RESERVAS CONTROLLER
 Route::post('/reserva/fecha/{peliculas}', [ReservasController::class, 'elegirFecha']) -> name('elegirFecha');
@@ -36,8 +39,8 @@ Route::get('/reserva/hora', [ReservasController::class, 'elegirHora']) -> name('
 Route::post('/reserva/confirmar', [ReservasController::class, 'confirmarReserva']) -> name('confirmarReserva');
 Route::get('/reserva/confirmar', [ReservasController::class, 'confirmarReserva']) -> name('confirmarReserva');
 
-Route::post('/reserva/entrada/{sesion}', [ReservasController::class, 'crearEntrada']) -> name('crearEntrada');
-Route::get('/reserva/entrada/{sesion}', [ReservasController::class, 'crearEntrada']) -> name('crearEntrada');
+Route::post('/reserva/entrada/{sesion}/{titulo}', [ReservasController::class, 'crearEntrada']) -> name('crearEntrada');
+Route::get('/reserva/entrada/{sesion}/{titulo}', [ReservasController::class, 'crearEntrada']) -> name('crearEntrada');
 
 //USUARIOS CONTROLLER
 //- /mostrarInfo

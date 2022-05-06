@@ -8,7 +8,7 @@
 </ul>
 
 <br>
-<a href="{{ route('crearEntrada', $sesionItems->id_sesion) }}"><input type="button" value="Confirmar"></a>
+<a href="{{ route('crearEntrada', ['sesion' => $sesionItems->id_sesion, 'titulo' => $peli['titulo']]) }}"><input type="button" value="Confirmar"></a>
 <br>
 <a href="{{ route('mostrar_pelicula', $peli['id']) }}"><input type="button" value="Cancelar"></a>
 @empty
