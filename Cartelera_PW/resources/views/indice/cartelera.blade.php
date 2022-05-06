@@ -1,14 +1,27 @@
-<h1>Cartelera sin posibilidad de reservar</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartelera</title>
+</head>
+<body>
+    <h1>Cartelera</h1>
 
-<h1>@lang('peliculas')</h1>
-<ul>
-    @forelse($peliculas as $peliculasItems)
-        <li>
-            <a href="{{ route('mostrar_pelicula',$peliculasItems) }}">{{ $peliculasItems['titulo'] }}</a>
-        </li>
-    @empty
-        <li>
-            No hay proyectos para mostrar
-        </li>
-    @endforelse
-</ul>
+    <h1>@lang('peliculas')</h1>
+    <ul>
+        @forelse($peliculas as $peliculasItems)
+            <li>
+                <a href="{{ route('mostrar_pelicula',$peliculasItems) }}">{{ $peliculasItems['titulo'] }}</a>
+            </li>
+        @empty
+            <li>
+                No hay proyectos para mostrar
+            </li>
+        @endforelse
+    </ul>    
+</body>
+</html>
+
+

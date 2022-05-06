@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\entrada;
 use App\Models\peliculas;
 use App\Models\salas;
 use App\Models\sesiones;
+
 use DB;
 
 class ReservasController extends Controller
@@ -16,8 +18,9 @@ class ReservasController extends Controller
         $peli = peliculas::find($id);
         $fechas = DB::table('sesiones')
             ->join('peliculas', 'id', '=', 'sesiones.id_pelicula')
-            ->select('sesiones.*')
-            ->where('sesiones.id_pelicula', '=', $id) 
+            ->select('sesiones.dia')
+            ->distinct()
+            ->where('sesiones.id_pelicula', '=', $id)
             ->get();
         return view('reserva.elegirFecha', ['fechas' => $fechas, 'peli' => $peli]);
     }
@@ -43,12 +46,16 @@ class ReservasController extends Controller
     public function confirmarReserva(Request $request)
     {
         $request -> validate([
-            'id_sesion'     => 'required',
+            'hora'          => 'required',
             'id_peli'       => 'required'
-        ]);        
+        ]);  
 
         $peli = peliculas::find($request->get('id_peli'));
-        $sesion = sesiones::find($request->get('id_sesion'));
+        //$sesion = sesiones::find($request->get('hora'));
+        $sesion = DB::table('sesiones')
+            ->select('sesiones.*')
+            ->where('sesiones.id_sesion', '=', $request->get('hora'))
+            ->get();
 
         return view('reserva.confirmarReserva', ['sesion' => $sesion, 'peli' => $peli]);
     }

@@ -45,8 +45,6 @@ Route::get('/reserva/entrada/{sesion}', [ReservasController::class, 'crearEntrad
 //- 
 
 
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
