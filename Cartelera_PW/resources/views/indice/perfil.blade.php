@@ -5,8 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tu perfil</title>
+    <link href="index/css/perfil.css" rel="stylesheet" type="text/css">
+    
 </head>
 <body>
+<h2>Tus entradas</h2>
+        @forelse($entradas as $entradasItems)
+        <p>-----------------------</p>
+        <ul>
+            <li>Entrada nº: {{ $entradasItems->id_entrada }}</li>
+            <li>Titulo: {{ $entradasItems->titulo }}</li>
+        </ul>
+        <p>-----------------------</p>
+        @empty
+            <p>No tienes entradas</p>
+        @endforelse
+        
+
+        <a href="{{ route('cartelera') }}"><input type="button" value="Hacer una reserva"></a>
+        <a href="{{ route('inicio') }}"><input type="button" value="Volver al inicio"></a>
 @if (Auth::check())
 <h1>Main usuario</h1>
     <h1> Bienvenido {{Auth::user()->name}}</h1>
@@ -21,24 +38,29 @@
         </x-jet-dropdown-link>
     </form>
 
-    <h2>Tus datos</h2>
-    <ul>
-        <li>Correo: {{ Auth::user()->email }}</li>
-    </ul>
-    <br>
-    @forelse($entradas as $entradasItems)
-    <ul>
-        <li>Entrada nº: {{ $entradasItems->id_entrada }}</li>
-        <li>Titulo: {{ $entradasItems->titulo }}</li>
-    </ul>
-    @empty
-        <p>No tienes entradas</p>
-    @endforelse
     
-
-    <a href="{{ route('cartelera') }}"><input type="button" value="Hacer una reserva"></a>
-    <br>
-    <a href="{{ route('inicio') }}"><input type="button" value="Volver al inicio"></a>
 @endif
+
+<!-- this is the markup. you can change the details (your own name, your own avatar etc.) but don’t change the basic structure! -->
+
+<aside class="profile-card">
+
+    <header>
+    
+        <!-- here’s the avatar -->
+        <a href="">
+            <img src="https://i.ibb.co/Zx02bSq/Funny-head.jpg"/>
+        </a>
+        
+        <!-- the username -->
+        <h1>{{Auth::user()->name}}</h1>
+        
+        <!-- and role or location -->
+        <h2>{{Auth::user()->email}}</h2>        
+    
+    </header>
+
+</aside>
+<!-- that’s all folks! -->
 </body>
 </html>
