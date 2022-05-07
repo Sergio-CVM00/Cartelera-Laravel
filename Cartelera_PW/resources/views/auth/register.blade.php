@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+        <img class="masthead-avatar mb-5" src="index/assets/img/png-clipart-popcorn-cinema-fizzy-drinks-film-popcorn-film-almaty-removebg-preview.png" alt="" height="100" width="100">
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

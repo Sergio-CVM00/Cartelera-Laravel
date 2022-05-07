@@ -35,7 +35,7 @@
             @empty
                 <p>No hay peliculas disponibles</p>
             @endforelse            
-    <a href="{{ route('inicio') }}"><button type="button" class="btn btn-danger">Volver</button></a>
+    <a href="{{ route('inicio') }}"><button type="button" class="btn btn-danger mb-4">Volver</button></a>
     </div>
     <!-- /.container -->
 </body>
