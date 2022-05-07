@@ -17,25 +17,24 @@
     </header>
 
     <!-- Page Content -->
-    <div class="container">   
-        @forelse($peliculas as $peliculasItems)
-        <div class="row">
-            <!-- Team Member 1 -->
-            <div class="col mb-4 mt-4">
-                <a href="{{ route('mostrar_pelicula', $peliculasItems['id']) }}">
-                    <div class="card border-0 shadow">
-                        <img src="{{ $peliculasItems['portada'] }}" class="card-img-top" alt="..." >
-                        <div class="card-body text-center">
-                        <h5 class="card-title mb-0">{{ $peliculasItems['titulo'] }}</h5>
-                    </div>
-                </a>
-            </div> 
-        </div>
-        <!-- /.row -->
-        @empty
-            <p>No hay peliculas disponibles</p>
-        @endforelse
-        
+    <div class="container">
+            <div class="row">   
+            @forelse($peliculas as $peliculasItems)        
+                <!-- Team Member 1 -->
+                <div class="col-3 mb-4 mt-4">
+                    <a href="{{ route('mostrar_pelicula', $peliculasItems['id']) }}">
+                        <div class="card border-0 shadow">
+                            <img src="{{ $peliculasItems['portada'] }}" class="card-img-top" alt="..." >
+                            <div class="card-body text-center">
+                            <h5 class="card-title mb-0">{{ $peliculasItems['titulo'] }}</h5>
+                        </div>
+                    </a>
+                </div>  
+            </div>
+            <!-- /.row -->           
+            @empty
+                <p>No hay peliculas disponibles</p>
+            @endforelse            
     <a href="{{ route('inicio') }}"><button type="button" class="btn btn-danger">Volver</button></a>
     </div>
     <!-- /.container -->

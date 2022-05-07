@@ -13,6 +13,7 @@
         <!-- Fonts CSS-->
         <link rel="stylesheet" href="index/css/heading.css">
         <link rel="stylesheet" href="index/css/body.css">
+
     </head>
     <body id="page-top">
         <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
@@ -303,10 +304,12 @@
                 <!-- About Section Content-->
                 <div class="row">
                     <div class="col-lg-4 ml-auto">
-                        <p class="pre-wrap lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p>
+                        <p class="pre-wrap lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.
+                        </p>
                     </div>
                     <div class="col-lg-4 mr-auto">
-                        <p class="pre-wrap lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p>
+                        <p class="pre-wrap lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!
+                        </p>
                     </div>
                 </div>
             </div>
@@ -347,8 +350,7 @@
                     <!-- Footer Location-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="mb-4">UBICACION</h4>
-                        <p class="pre-wrap lead mb-0">
-                            Cadiz
+                        <p class="pre-wrap lead mb-0">Av. Universidad de Cádiz, 10, 11519 Puerto Real, Cádiz
                         </p>
                     </div>
                     <!-- Footer Social Icons-->
@@ -358,8 +360,7 @@
                     <!-- Footer About Text-->
                     <div class="col-lg-4">
                         <h4 class="mb-4">SOBRE NUESTRO CINE</h4>
-                        <p class="pre-wrap lead mb-0">
-                            Hola
+                        <p class="pre-wrap lead mb-0">Hola
                         </p>
                     </div>
                 </div>
