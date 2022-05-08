@@ -42,6 +42,9 @@ Route::get('/reserva/confirmar', [ReservasController::class, 'confirmarReserva']
 Route::post('/reserva/entrada/{sesion}/{titulo}', [ReservasController::class, 'crearEntrada']) -> name('crearEntrada');
 Route::get('/reserva/entrada/{sesion}/{titulo}', [ReservasController::class, 'crearEntrada']) -> name('crearEntrada');
 
+Route::get('/reserva/borrar/{id}', [ReservasController::class, 'borrarEntrada']) -> name('borrarEntrada');
+Route::post('/reserva/borrar/{id}', [ReservasController::class, 'borrarEntrada']) -> name('borrarEntrada');
+
 //USUARIOS CONTROLLER
 //- /mostrarInfo
 //- /modInfo

@@ -14,7 +14,7 @@ class UsuariosController extends Controller
             ->select('entrada.*')
             ->where('entrada.id_usuario', '=', Auth::user()->id)
             ->get();
-            
+
         return view('indice.perfil', ['entradas' => $entradas]);
     }
 }

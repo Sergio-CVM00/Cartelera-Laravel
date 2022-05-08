@@ -65,4 +65,9 @@ class ReservasController extends Controller
 
         return redirect('/perfil');
     }
+
+    public function borrarEntrada($id)
+    {
+        
+    }
 }
