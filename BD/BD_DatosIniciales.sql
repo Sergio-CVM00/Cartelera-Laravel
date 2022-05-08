@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-05-2022 a las 20:27:02
+-- Tiempo de generación: 08-05-2022 a las 17:35:50
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -30,15 +30,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `entrada` (
   `id_entrada` int(11) NOT NULL,
   `id_sesion` int(11) NOT NULL,
-  `id_usuario` bigint(20) UNSIGNED NOT NULL
+  `id_usuario` bigint(20) UNSIGNED NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `entrada`
---
-
-INSERT INTO `entrada` (`id_entrada`, `id_sesion`, `id_usuario`) VALUES
-(1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -104,18 +100,21 @@ CREATE TABLE `peliculas` (
   `titulo` varchar(50) NOT NULL,
   `genero` varchar(50) NOT NULL,
   `estreno` date NOT NULL,
-  `director` varchar(50) NOT NULL
+  `director` varchar(50) NOT NULL,
+  `portada` text NOT NULL,
+  `sinopsis` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `peliculas`
 --
 
-INSERT INTO `peliculas` (`id`, `duracion`, `titulo`, `genero`, `estreno`, `director`) VALUES
-(1, 120, 'Dr. Strange', 'Fantasía', '2022-05-05', 'Sam Raimi'),
-(2, 143, 'Animales Fantásticos', 'Aventura', '2012-04-06', 'Pepe Fontaneda'),
-(3, 110, 'La ciudad Perdida', 'Comedia', '2010-01-15', 'Kevin Pérez Gálvez'),
-(4, 120, 'Sonic', 'Aventura', '2022-05-06', 'Jeff Fowler');
+INSERT INTO `peliculas` (`id`, `duracion`, `titulo`, `genero`, `estreno`, `director`, `portada`, `sinopsis`) VALUES
+(1, 126, 'Doctor Strange en el Multiverso de la Locura\n', 'Fantasía', '2022-05-05', 'Sam Raimi', 'https://i.ibb.co/ZgJ26RR/doctor-strange-in-the-multiverse-of-madness-4pjr.png', 'En esta nueva aventura, el Doctor Strange (Benedict Cumberbatch) va a poner a prueba los límites de sus poderes y esto le llevará a explorar una nueva dimensión de sus capacidades. Tras haber fallado su hechizo, cuando trataba de ayudar a Spider-Man (Tom Holland) con su identidad secreta,  tiene que recurrir a una vieja amiga, Wanda Maximoff (Elizabeth Olsen) para enmendar su error. Como nunca antes, el famoso hechicero de Marvel explorará los oscuros rincones del Multiverso, donde deberá contar con nuevos y viejos aliados si quiere sobrevivir a las peligrosas realidades alternativas del universo y enfrentarse a un nuevo misterioso enemigo.'),
+(2, 144, 'Animales Fantásticos: Los Secretos de Dumbledore\n', 'Aventura', '2022-04-08', 'David Yates', 'https://i.ibb.co/s5zrR23/0138242.jpg', 'En Animales Fantásticos: Los Secretos de Dumbledore el malvado y poderoso mago Grindelwald sigue buscando adeptos a su causa, pero esta vez se transportará a todos los rincones y mundos mágicos existentes para obtener lo que quiere. Por otra parte, Dumbledore unirá a su propio ejército formado por Newt y Theseus Scamander, Jacob, entre otros, para poner fin a la guerra que está a punto de comenzar Grindelwald en su nombre. \n\nMientras encuentran aliados y la manera de poner fin a esta oscura edad, el pasado de Dumbledore irá cada vez tomando más presencia en la historia entre él y su antiguo amigo Grindelwald, con quien le unen otros grandes lazos más allá de la enemistad.'),
+(3, 105, 'Morbius', 'Accion', '2022-04-01', 'Daniel Espinosa', 'https://i.ibb.co/t45tNWg/MRBS-INTL-On-Line-6072x9000-Montage-06-traducido.jpg', 'El Doctor Michael Morbius (Jared Leto) es un bioquímico que sufre una extraña enfermedad en la sangre. Para curarse y dar una respuesta a su trastorno, en el proceso, se infecta sin darse cuenta con una forma de vampirismo. Aunque debería haber muerto, tras la cura, Michael se siente más vivo que nunca y adquiere dones como fuerza, velocidad, capacidad de ecolocalización, además de una necesidad irresistible de consumir sangre. Trágicamente convertido en un imperfecto antihéroe, el Doctor Morbius tendrá una última oportunidad, pero ¿a qué precio?\n\nSpin-off de uno de los villanos más conocidos de Spider-Man, creado por Roy Thomas y Gil Kane, el filme lo producen los responsables de Spider-Man: Homecoming (2017), Venom (2018) y Spider-Man: Lejos de casa (2019).'),
+(4, 99, 'Sonic: La película', 'Aventura', '2022-05-06', 'Jeff Fowler', 'https://i.ibb.co/BTF5XmT/0815514.jpg', 'Sonic, el famoso erizo azul de SEGA vivirá su primera aventura en la pantalla grande en esta película, que incluirá tanto acción real como animación creada por ordenador. En esta adaptación cinematográfica basada en la conocida saga de videojuegos descubriremos a su protagonista: Sonic, el erizo con la habilidad de correr a la velocidad del sonido. En esta nueva aventura, el erizo azul deberá viajar hasta nuestro mundo para poder salvar el suyo. En su misión no estará solo, pues contará con la ayuda de su amigo humano Tom Wachowski (James Marsden), con quien intentará escapar del gobierno que quiere capturarlo, además de huir de las artimañas del villano Doctor Ivo Robonik (Jim Carrey).'),
+(5, 116, 'Uncharted: Fuera del Mapa', 'Aventura / Acción', '2022-02-11', 'Ruben Fleischer', 'https://i.ibb.co/ccyTjDg/UNCH-LAS-On-Line-TSR-1400x2100-Daisy-Chain-07.jpg', 'Basado en uno de los juegos más aclamados por la critica y que más ha vendido en la historia, Uncharted: Fuera del mapa, narra la historia de Nathan Drake y la primer aventura con su socio-rival Victor “Sully” Sullivan. Estelarizada por Tom Holland como Nathan Drake y Mark Wahlberg como el bromista de intelecto rápido Sully. Uncharted: Fuera del mapa presenta al público la manera en que Nathan Drake se convierte en un cazador de tesoros mientras que resuelve los más grandes misterios en una aventura llena de aventura y acción épica alrededor del mundo.');
 
 -- --------------------------------------------------------
 
@@ -174,8 +173,16 @@ CREATE TABLE `sesiones` (
 --
 
 INSERT INTO `sesiones` (`id_sesion`, `id_sala`, `id_pelicula`, `hora_inicio`, `hora_fin`, `dia`) VALUES
-(1, 1, 1, '17:49:05', '20:00:04', '2022-05-05'),
-(2, 2, 4, '09:43:02', '20:51:02', '2022-05-05');
+(4, 1, 1, '15:00:00', '17:00:06', '2022-05-10'),
+(5, 2, 1, '20:00:00', '22:00:06', '2022-05-10'),
+(6, 1, 2, '12:00:00', '14:24:00', '2022-05-11'),
+(7, 2, 2, '17:00:00', '19:24:17', '2022-05-11'),
+(8, 1, 3, '17:00:54', '18:40:54', '2022-05-17'),
+(9, 1, 3, '19:00:54', '20:40:54', '2022-05-18'),
+(10, 1, 4, '15:00:14', '16:30:14', '2022-05-13'),
+(11, 2, 4, '17:30:14', '19:00:14', '2022-05-20'),
+(12, 1, 5, '17:31:14', '19:41:14', '2022-05-23'),
+(13, 2, 5, '20:31:14', '22:40:14', '2022-05-25');
 
 -- --------------------------------------------------------
 
@@ -197,7 +204,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('LU7TcJMJHVqudRFN31ueME8WZtBd7RPvDoGlH0DK', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiRXVrQkl0SFE3QTFjRHU3Vm5qbmZJUW5KNnBHZktmd0gxT3ZkUnNtSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6Mjp7aTowO3M6MTA6Il9vbGRfaW5wdXQiO2k6MTtzOjY6ImVycm9ycyI7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9yZXNlcnZhL2hvcmEiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTA6Il9vbGRfaW5wdXQiO2E6MDp7fXM6NjoiZXJyb3JzIjtPOjMxOiJJbGx1bWluYXRlXFN1cHBvcnRcVmlld0Vycm9yQmFnIjoxOntzOjc6IgAqAGJhZ3MiO2E6MTp7czo3OiJkZWZhdWx0IjtPOjI5OiJJbGx1bWluYXRlXFN1cHBvcnRcTWVzc2FnZUJhZyI6Mjp7czoxMToiACoAbWVzc2FnZXMiO2E6Mjp7czo1OiJmZWNoYSI7YToxOntpOjA7czoyODoiVGhlIGZlY2hhIGZpZWxkIGlzIHJlcXVpcmVkLiI7fXM6NzoiaWRfcGVsaSI7YToxOntpOjA7czozMDoiVGhlIGlkIHBlbGkgZmllbGQgaXMgcmVxdWlyZWQuIjt9fXM6OToiACoAZm9ybWF0IjtzOjg6IjptZXNzYWdlIjt9fX19', 1651775075);
+('WI5X8FpvcP50lAhDCFlIWye7srLOFu2sw8xdlZJR', 6, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicmVFeTJzV0I0ckdEbTBKSDl5UDdZTEpsdTlKeVRGTnFHODR5enp4UiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9wZXJmaWwiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo2O30=', 1652024076);
 
 -- --------------------------------------------------------
 
@@ -226,21 +233,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(2, 'juanma', 'juanma@gmail.com', NULL, '$2y$10$EWqXbv14A1CLJ2eJhae0Zu5857vQiQ09NRAIrpatDmlsrHT28Cx9m', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-03 07:40:52', '2022-05-03 07:40:52'),
-(3, 'usuario1', 'usuario@gmail.com', NULL, '$2y$10$Rd8lt/xPoySeadWndJ0ZPOvWGwi4UMVtq8bDpaApE9uTqvneaOfUa', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-03 12:40:44', '2022-05-03 12:40:44');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `id_usuario` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `nombre` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(6, 'UsuarioPrueba', 'usuario@prueba.com', NULL, '$2y$10$.nKFU7qLvSalFoErsr/Ui.CFSI0bsGpEOr51ck42BL8NhEB11Av3K', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-08 13:23:30', '2022-05-08 13:23:30');
 
 --
 -- Índices para tablas volcadas
@@ -317,12 +310,6 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -348,7 +335,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -360,19 +347,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
