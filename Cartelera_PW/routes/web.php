@@ -3,6 +3,7 @@
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ReservasController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,6 @@ Route::get('/cartelera/{id}', [IndexController::class, 'show']) -> name('mostrar
 //USUARIOS CONTROLLER   
 Route::get('/perfil', [UsuariosController::class, 'mostrarPerfil']) -> name('mainPerfil');
 
-
 //RESERVAS CONTROLLER
 Route::post('/reserva/fecha/{peliculas}', [ReservasController::class, 'elegirFecha']) -> name('elegirFecha');
 Route::get('/reserva/fecha/{peliculas}', [ReservasController::class, 'elegirFecha']) -> name('elegirFecha');
@@ -44,10 +44,31 @@ Route::get('/reserva/entrada/{sesion}/{titulo}', [ReservasController::class, 'cr
 Route::get('/reserva/borrar/{id}', [ReservasController::class, 'borrarEntrada']) -> name('borrarEntrada');
 Route::post('/reserva/borrar/{id}', [ReservasController::class, 'borrarEntrada']) -> name('borrarEntrada');
 
-//USUARIOS CONTROLLER
-//- /mostrarInfo
-//- /modInfo
-//- 
+//ADMIN CONTROLLER
+Route::get('/admin', [AdminController::class, 'mainAdmin']) -> name('mainAdmin');
+
+Route::get('/admin/annadirPeli', [AdminController::class, 'annadirPeliView']) -> name('annadirPeli');
+Route::get('/admin/annadirSesion', [AdminController::class, 'annadirSesionView']) -> name('annadirSesion');
+
+Route::get('/admin/crearPeli', [AdminController::class, 'crearPeli']) -> name('crearPeli');
+Route::post('/admin/crearPeli', [AdminController::class, 'crearPeli']) -> name('crearPeli');
+
+Route::get('/admin/crearSesion', [AdminController::class, 'crearSesion']) -> name('crearSesion');
+Route::post('/admin/crearSesion', [AdminController::class, 'crearSesion']) -> name('crearSesion');
+
+
+Route::get('/admin/elimPeli', [AdminController::class, 'quitarPeliView']) -> name('quitarPeli');
+Route::get('/admin/elimSesion', [AdminController::class, 'quitarSesionView']) -> name('quitarSesion');
+Route::get('/admin/elimUser', [AdminController::class, 'quitarUserView']) -> name('quitarUser');
+
+Route::get('/admin/elimPeli/{id}', [AdminController::class, 'quitarPeli']) -> name('borrarPeli');
+Route::post('/admin/elimPeli/{id}', [AdminController::class, 'quitarPeli']) -> name('borrarPeli');
+
+Route::get('/admin/elimSesion/{id}', [AdminController::class, 'quitarSesion']) -> name('borrarSesion');
+Route::post('/admin/elimSesion/{id}', [AdminController::class, 'quitarSesion']) -> name('borrarSesion');
+
+Route::get('/admin/elimUser/{id}', [AdminController::class, 'quitarUser']) -> name('borrarUser');
+Route::post('/admin/elimUser/{id}', [AdminController::class, 'quitarUser']) -> name('borrarUser');
 
 
 Route::middleware([

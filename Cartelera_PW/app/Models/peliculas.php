@@ -9,4 +9,6 @@ class peliculas extends Model
 {
     use HasFactory;
     protected $table='peliculas';
+
+    protected $fillable = ['titulo', 'duracion', 'genero', 'estreno', 'director', 'portada', 'sinopsis', 'updated_at', 'created_at'];
 }
