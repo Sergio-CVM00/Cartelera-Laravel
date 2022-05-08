@@ -21,7 +21,6 @@ Route::get('/', function () {
 }) -> name('inicio');
 
 //INDEX CONTROLLER
-Route::get('/about', [IndexController::class, 'mostrarAbout']) -> name('about');
 Route::get('/cartelera', [IndexController::class, 'mostrarCartelera']) -> name('cartelera');
 Route::get('/cartelera/{id}', [IndexController::class, 'show']) -> name('mostrar_pelicula');
 

@@ -7,11 +7,6 @@ use App\Models\peliculas;
 
 class IndexController extends Controller
 {
-    public function mostrarAbout()
-    {
-        return view('indice.about');
-    }
-
     public function mostrarCartelera()
     {
         $peliculas=peliculas::get();
