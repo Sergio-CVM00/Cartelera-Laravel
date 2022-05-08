@@ -66,8 +66,12 @@ class ReservasController extends Controller
         return redirect('/perfil');
     }
 
-    public function borrarEntrada($id)
+    public function borrarEntrada($id_entrada)
     {
-        
+        DB::table('entrada')
+        ->where('entrada.id_entrada', '=', $id_entrada)
+        ->delete();
+
+        return redirect('/perfil');
     }
 }

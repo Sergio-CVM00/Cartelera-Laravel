@@ -60,8 +60,7 @@
                                         <p class="text-gray mb-3"><i class="icofont-list"></i> Pelicula: {{$entradasItem->titulo}}</p>
                                         <hr>
                                         <div class="float-right">
-                                            <a class="btn btn-sm btn-outline-primary" href="#"><i class="icofont-headphone-alt"></i> HELP</a>
-                                            <a class="btn btn-sm btn-primary" href="#"><i class="icofont-refresh"></i> REORDER</a>
+                                            <a href="{{ route('borrarEntrada', $entradasItem->id_entrada) }}"><button class="btn btn-sm btn-warning">CANCELAR RESERVA</button></a>
                                         </div>
                                     </div>
                                 </div>
